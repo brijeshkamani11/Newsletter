@@ -18,10 +18,16 @@ app.get("/", function (req, res) {
 });
 
 app.post("/", function (req, res) {
+    
     const fname = req.body.firstname;
     const lname = req.body.lastname;
     const email = req.body.email;
-    const listId = "efe0ff67d8";
+    if(fname.trim() == "" || lname.trim() == "" || email.trim() == "")
+    {
+        res.sendFile(__dirname + "/fail.html");
+    }
+    else{
+        const listId = "efe0ff67d8";
     const subscriberHash = md5(email.toLowerCase());
     const subscribingUser = {
         firstName: fname,
@@ -64,6 +70,8 @@ app.post("/", function (req, res) {
     
     // console.log(fname + lname + email);
     // res.sendFile(__dirname + "/success.html");
+    }
+    
 });
 
 app.listen(process.env.PORT || 3000, function () {
