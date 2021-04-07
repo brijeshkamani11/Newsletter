@@ -49,11 +49,12 @@ app.post("/", function (req, res) {
                 listId,
                 subscriberHash
             );
-
+            // console.log(response);
             res.send(`<h1>You have already ${response.status}.</h1>`);
         } catch (e) {
             if (e.status === 404) {
                 runn();
+                // console.log(e);
             }
         }
     }
